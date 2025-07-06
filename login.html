@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - E-Commerce</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <h1>🔐 Login</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <form id="login-form" class="auth-form">
+      <h2>Welcome Back</h2>
+      <input type="email" id="login-email" placeholder="Enter Email" required />
+      <input type="password" id="login-password" placeholder="Enter Password" required />
+      <button type="submit" class="btn primary">Login</button>
+      <p>Don't have an account? <a href="signup.html">Signup here</a></p>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      if (user && user.email === email && user.password === password) {
+        localStorage.setItem("isLoggedIn", "true");
+        alert("Login successful!");
+        window.location.href = "index.html";
+      } else {
+        alert("Invalid credentials!");
+      }
+    });
+  </script>
+</body>
+</html>
